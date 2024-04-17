@@ -24,11 +24,12 @@ git clone https://github.com/JPFerzacca/flask-hello-world.git
 pip install -r requirements.txt
 ```
 
+## Accessing the Application
 
-## How to Use
-To run the application, execute:
+The application is deployed and can be accessed at the following URL:
+[https://flask-hello-world-ncra.onrender.com](https://flask-hello-world-ncra.onrender.com)
 
-Navigate to `localhost:5000` in your web browser to access the application routes.
+Visit the link to interact with the live application.
 
 ## Application Routes
 - `/` - Returns a simple "Hello, World!" message.
