@@ -1,3 +1,11 @@
+"""
+File: app.py
+Author: JonPaul Ferzacca
+Date: April 16, 2024
+Description: This file initializes the Flask application and includes route definitions. It's the main entry point of the application.
+Version: 1.0
+"""
+
 import psycopg2
 
 from flask import Flask
@@ -6,13 +14,26 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
+    """
+    A simple route to return the 'Hello, World!' string.
+    This is typically used as a basic connectivity test.
 
+    Returns:
+        str: A greeting string.
+    """
 
 @app.route('/db_test')
 def testing():
     conn = psycopg2.connect("postgres://jp_database_user:ovnfl8P6VnViyPXl9Lp4fvFDP7cjuUot@dpg-co5piv63e1ms73b9oca0-a/jp_database")
     conn.close()
     return "Database Connection Successful"
+    """
+    Tests the database connectivity using a PostgreSQL connection.
+    Closes the connection immediately after opening it.
+
+    Returns:
+        str: A message indicating the status of the database connection.
+    """
 
 @app.route('/db_create')
 def creating():
@@ -30,6 +51,14 @@ def creating():
     conn.commit()
     conn.close()
     return "Basketball Table Successfully Created"
+    """
+    Creates a table in the PostgreSQL database for storing basketball player data.
+    Ensures the table does not exist before creating it.
+
+    Returns:
+        str: A message confirming the creation of the table.
+    """
+
 
 @app.route('/db_insert')
 def inserting():
@@ -46,7 +75,13 @@ def inserting():
     conn.commit()
     conn.close()
     return "Basketball Table Successfully Populated"
+    """
+    Inserts predefined entries of basketball players into the 'Basketball' table.
+    Each entry includes the player's first and last name, city, team name, and jersey number.
 
+    Returns:
+        str: A message indicating that the data was successfully inserted.
+    """
 
 @app.route('/db_select')
 def selecting():
@@ -66,6 +101,13 @@ def selecting():
         response_string+="<tr>"
     response_string+="<td>"
     return response_string
+    """
+    Fetches all entries from the 'Basketball' table in the database.
+    Formats and returns the data in a simple HTML table.
+
+    Returns:
+        str: An HTML string representing a table with player data.
+    """
 
 @app.route('/db_drop')
 def dropping():
@@ -77,4 +119,10 @@ def dropping():
     conn.commit()
     conn.close()
     return "Basketball Table Successfully Dropped"
+    """
+    Drops the 'Basketball' table from the database.
+    Used for cleaning up or resetting the database structure.
 
+    Returns:
+        str: A message confirming the deletion of the table.
+    """
